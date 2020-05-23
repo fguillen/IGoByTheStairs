@@ -5,8 +5,10 @@ using UnityEngine;
 public class PersonController : MonoBehaviour
 {
   private Vector2 direction;
-  public float velocity = 3f;
+  public float velocity = 10f;
+  public float actualVelocity;
   public Rigidbody2D theRB;
+  public bool onStairs;
 
   // Start is called before the first frame update
   void Start()
@@ -17,14 +19,16 @@ public class PersonController : MonoBehaviour
   // Update is called once per frame
   void Update()
   {
-    direction = GetDirection();
+    ChangeVelocity();
+    ChangeDirection();
     Move();
     FlipCharacter();
   }
 
   void Move()
   {
-    theRB.velocity = direction * velocity;
+    //theRB.velocity = direction * actualVelocity;
+    theRB.AddForce(direction * actualVelocity);
   }
 
   void FlipCharacter()
@@ -38,23 +42,52 @@ public class PersonController : MonoBehaviour
     }
   }
 
-  Vector2 GetDirection()
+  void ChangeVelocity()
   {
-    Vector2 result;
-
-    if (Input.GetKey(KeyCode.RightArrow))
+    if(onStairs)
     {
-      result = new Vector2(1f, 0f);
+      actualVelocity = velocity * 2;
+    } else
+    {
+      actualVelocity = velocity;
+    }
+  }
+
+  void ChangeDirection()
+  {
+    if (Input.GetKey(KeyCode.RightArrow))
+    { 
+      direction = new Vector2(1f, 0f);
     }
     else if (Input.GetKey(KeyCode.LeftArrow))
     {
-      result = new Vector2(-1f, 0f);
+      direction = new Vector2(-1f, 0f);
     }
     else
     {
-      result = Vector2.zero;
+      direction = Vector2.zero;
     }
-
-    return result;
   }
+
+  public void OnCollisionEnter2D(Collision2D collision)
+  {
+    if (collision.gameObject.CompareTag("Steps"))
+    {
+      onStairs = true;
+    }
+  }
+
+  public void OnCollisionExit2D(Collision2D collision)
+  {
+    if (collision.gameObject.CompareTag("Steps"))
+    {
+      onStairs = false;
+    }
+  }
+
+
+  //void OnCollisionEnter(Collision: collider)
+  //{
+  //  Debug.Log("GameObject Hit: " + collider.gameObject.name);
+  //}
 }

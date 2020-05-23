@@ -223,7 +223,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 0
+  m_GravityScale: 1
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -241,8 +241,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f16f18ab78fce4265984fd9b4f835a26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocity: 5
+  velocity: 30
+  actualVelocity: 0
   theRB: {fileID: 203403317}
+  onStairs: 0
 --- !u!58 &203403319
 CircleCollider2D:
   m_ObjectHideFlags: 0
