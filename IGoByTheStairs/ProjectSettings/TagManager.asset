@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Steps
   - ElevatorLastPosition
+  - PersonLastPosition
   layers:
   - Default
   - TransparentFX
@@ -15,8 +16,8 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
+  - Background
+  - Objects
   - 
   - 
   - 
@@ -42,4 +43,10 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 858020069
+    locked: 0
+  - name: Objects
+    uniqueID: 2206054529
     locked: 0

@@ -22,11 +22,17 @@ public class PersonController : MonoBehaviour
   // Update is called once per frame
   void Update()
   {
-    ChangeVelocityOnStairs();
-    ToogleDirection();
-    Move();
-    FlipCharacter();
-    //CountClicksPerSecond();
+    if (ManagerController.instance.state == "playing")
+    {
+      ChangeVelocityOnStairs();
+      ToogleDirection();
+      Move();
+      FlipCharacter();
+      //CountClicksPerSecond();
+    } else
+    {
+      theRB.velocity = Vector2.zero; // TODO fix this trick
+    }
   }
 
   //void CountClicksPerSecond()
@@ -112,6 +118,14 @@ public class PersonController : MonoBehaviour
     if (collision.gameObject.CompareTag("Steps"))
     {
       onStairs = false;
+    }
+  }
+
+  public void OnTriggerEnter2D(Collider2D other)
+  {
+    if (other.CompareTag("PersonLastPosition"))
+    {
+      ManagerController.instance.PersonFinishes();
     }
   }
 

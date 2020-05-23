@@ -5,6 +5,7 @@ using UnityEngine;
 public class ElevatorController : MonoBehaviour
 {
   public float timeDoors = 2f;
+  private float timeDoorsCounter;
   public float velocity = 3f;
   public string state;
   public Rigidbody2D theRB;
@@ -14,28 +15,36 @@ public class ElevatorController : MonoBehaviour
   void Start()
   {
     state = "idle";
+    timeDoorsCounter = timeDoors;
   }
 
   // Update is called once per frame
   void Update()
   {
-    if(state == "idle")
+    if(ManagerController.instance.state == "playing" && state == "idle")
     {
-      if (Input.GetKeyDown(KeyCode.Space))
-      {
-        state = "closingDoors";
-        animator.SetTrigger("closeDoors");
-      }
+      state = "closingDoors";
+      animator.SetTrigger("closeDoors");
     }
     if(state == "goingUp")
     {
       theRB.velocity = new Vector3(0f, velocity, 0f);
     }
 
-    if(state == "closingDoors")
+    if(state == "openingDoors")
     {
-      timeDoors -= Time.deltaTime;
-      if(timeDoors <= 0)
+      timeDoorsCounter -= Time.deltaTime;
+      if(timeDoorsCounter <= 0)
+      {
+        state = "end";
+        ManagerController.instance.ElevatorFinishes();
+      }
+    }
+
+    if (state == "closingDoors")
+    {
+      timeDoorsCounter -= Time.deltaTime;
+      if (timeDoorsCounter <= 0)
       {
         state = "goingUp";
       }
@@ -49,6 +58,7 @@ public class ElevatorController : MonoBehaviour
       state = "openingDoors";
       animator.SetTrigger("openDoors");
       theRB.velocity = Vector3.zero;
+      timeDoorsCounter = timeDoors;
     }
   }
 }
