@@ -43,7 +43,6 @@ public class ManagerController : MonoBehaviour
     state = "end";
     float resultTime = elevatorTime - personTime;
     resultTime = (Mathf.Round(resultTime * 100)) / 100f;
-    resultTime = Mathf.Abs(resultTime);
     string message;
 
     if(resultTime >= 0)
@@ -54,7 +53,7 @@ public class ManagerController : MonoBehaviour
       message = "Elevator wins";
     }
 
-    resultText.text = resultTime + " seconds difference \n" + message;
+    resultText.text = Mathf.Abs(resultTime) + " seconds difference \n" + message;
     resultText.gameObject.SetActive(true);
   }
 
