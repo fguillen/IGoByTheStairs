@@ -6,7 +6,7 @@ public class PersonController : MonoBehaviour
 {
   private Vector2 direction;
   public float velocity = 3f;
-  public Rigidbody2D theRG;
+  public Rigidbody2D theRB;
 
   // Start is called before the first frame update
   void Start()
@@ -19,11 +19,23 @@ public class PersonController : MonoBehaviour
   {
     direction = GetDirection();
     Move();
+    FlipCharacter();
   }
 
   void Move()
   {
-    theRG.velocity = direction * velocity;
+    theRB.velocity = direction * velocity;
+  }
+
+  void FlipCharacter()
+  {
+    if(direction.x < 0)
+    {
+      theRB.transform.localScale = new Vector3(1f, 1f, 1f);
+    } else
+    {
+      theRB.transform.localScale = new Vector3(-1f, 1f, 1f);
+    }
   }
 
   Vector2 GetDirection()
