@@ -407,6 +407,8 @@ MonoBehaviour:
   actualVelocity: 0
   theRB: {fileID: 203403317}
   onStairs: 0
+  clicksCounter: 0
+  clicksPerSecond: 0
 --- !u!58 &203403319
 CircleCollider2D:
   m_ObjectHideFlags: 0

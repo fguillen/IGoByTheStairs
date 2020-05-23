@@ -9,25 +9,63 @@ public class PersonController : MonoBehaviour
   public float actualVelocity;
   public Rigidbody2D theRB;
   public bool onStairs;
+  public int clicksCounter = 0;
+  public int clicksPerSecond = 0;
+  private float lastClicksCountTime;
 
   // Start is called before the first frame update
   void Start()
   {
-    
+    direction = new Vector2(1f, 0f);
   }
 
   // Update is called once per frame
   void Update()
   {
-    ChangeVelocity();
-    ChangeDirection();
+    ChangeVelocityOnStairs();
+    ToogleDirection();
     Move();
     FlipCharacter();
+    //CountClicksPerSecond();
   }
+
+  //void CountClicksPerSecond()
+  //{
+  //  if (Input.GetKeyDown(KeyCode.RightArrow))
+  //  {
+  //    if(clicksCounter == 0)
+  //    {
+  //      lastClicksCountTime = Time.time;
+  //    }
+
+  //    clicksCounter++;
+  //  }
+
+  //  var secondsDistance = Time.time - lastClicksCountTime;
+    
+  //  if(secondsDistance >= 1f)
+  //  {
+  //    lastClicksCountTime = Time.time;
+  //    clicksPerSecond = clicksCounter;
+  //    clicksCounter = 0;
+  //    Debug.Log("clicksPerSecond: " + clicksPerSecond);
+  //  }
+  //}
 
   void Move()
   {
-    theRB.velocity = direction * actualVelocity;
+    if (Input.GetKey(KeyCode.RightArrow))
+    {
+      theRB.velocity = direction * actualVelocity;
+      //var newX = gameObject.transform.position.x + (actualVelocity * Time.deltaTime);
+      //gameObject.transform.position = new Vector3(newX, gameObject.transform.position.y, gameObject.transform.position.z);
+
+      //theRB.AddForce(direction * actualVelocity);
+    } else
+    {
+      theRB.velocity = Vector2.zero;
+    }
+    
     //theRB.AddForce(direction * actualVelocity);
   }
 
@@ -42,7 +80,7 @@ public class PersonController : MonoBehaviour
     }
   }
 
-  void ChangeVelocity()
+  void ChangeVelocityOnStairs()
   {
     if(onStairs)
     {
@@ -53,19 +91,11 @@ public class PersonController : MonoBehaviour
     }
   }
 
-  void ChangeDirection()
+  void ToogleDirection()
   {
-    if (Input.GetKey(KeyCode.RightArrow))
-    { 
-      direction = new Vector2(1f, 0f);
-    }
-    else if (Input.GetKey(KeyCode.LeftArrow))
+    if(!onStairs && Input.GetKeyDown(KeyCode.Space))
     {
-      direction = new Vector2(-1f, 0f);
-    }
-    else
-    {
-      direction = Vector2.zero;
+      direction = new Vector2(direction.x * -1f, 0f);
     }
   }
 
