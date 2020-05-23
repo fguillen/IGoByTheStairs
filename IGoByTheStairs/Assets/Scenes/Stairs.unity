@@ -471,7 +471,7 @@ GameObject:
   m_Component:
   - component: {fileID: 272224141}
   - component: {fileID: 272224142}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1311,7 +1311,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1246853200}
   - component: {fileID: 1246853201}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: background.cleaned
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1953,7 +1953,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1684535228
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2403,7 +2403,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -10
   m_TargetDisplay: 0
 --- !u!224 &2138787591
 RectTransform:
