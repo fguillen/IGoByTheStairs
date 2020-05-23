@@ -8,6 +8,7 @@ public class ElevatorController : MonoBehaviour
   public float velocity = 3f;
   public string state;
   public Rigidbody2D theRB;
+  public Animator animator;
 
   // Start is called before the first frame update
   void Start()
@@ -23,6 +24,7 @@ public class ElevatorController : MonoBehaviour
       if (Input.GetKeyDown(KeyCode.Space))
       {
         state = "closingDoors";
+        animator.SetTrigger("closeDoors");
       }
     }
     if(state == "goingUp")
@@ -37,6 +39,16 @@ public class ElevatorController : MonoBehaviour
       {
         state = "goingUp";
       }
+    }
+  }
+
+  private void OnTriggerEnter2D(Collider2D other)
+  {
+    if (other.CompareTag("ElevatorLastPosition"))
+    {
+      state = "openingDoors";
+      animator.SetTrigger("openDoors");
+      theRB.velocity = Vector3.zero;
     }
   }
 }

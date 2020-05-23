@@ -27,8 +27,8 @@ public class PersonController : MonoBehaviour
 
   void Move()
   {
-    //theRB.velocity = direction * actualVelocity;
-    theRB.AddForce(direction * actualVelocity);
+    theRB.velocity = direction * actualVelocity;
+    //theRB.AddForce(direction * actualVelocity);
   }
 
   void FlipCharacter()
