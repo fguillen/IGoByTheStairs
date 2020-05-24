@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class ManagerController : MonoBehaviour
 {
@@ -36,6 +37,14 @@ public class ManagerController : MonoBehaviour
         instructionsText.gameObject.SetActive(false);
       }
     }
+
+    if (state == "end")
+    {
+      if (Input.GetKeyDown(KeyCode.Space))
+      {
+        StartAgain();
+      }
+    }
   }
 
   public void EndGame()
@@ -55,6 +64,8 @@ public class ManagerController : MonoBehaviour
 
     resultText.text = Mathf.Abs(resultTime) + " seconds difference \n" + message;
     resultText.gameObject.SetActive(true);
+
+    CanvasController.instance.ShowInstructionsStartAgain();
   }
 
   public void ElevatorFinishes()
@@ -75,5 +86,10 @@ public class ManagerController : MonoBehaviour
     {
       EndGame();
     }
+  }
+
+  public void StartAgain()
+  {
+    SceneManager.LoadScene("Stairs");
   }
 }
