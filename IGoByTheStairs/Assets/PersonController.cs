@@ -77,7 +77,7 @@ public class PersonController : MonoBehaviour
 
   void FlipCharacter()
   {
-    if(direction.x < 0)
+    if(direction.x > 0)
     {
       theRB.transform.localScale = new Vector3(1f, 1f, 1f);
     } else
