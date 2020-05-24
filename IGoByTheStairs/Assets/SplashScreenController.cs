@@ -2,13 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 public class SplashScreenController : MonoBehaviour
 {
-  public float waitSeconds = 2f;
-  public float whiteSeconds = 2f;
-  public Image white;
+  public Animator animator;
 
   // Start is called before the first frame update
   void Start()
@@ -19,14 +16,14 @@ public class SplashScreenController : MonoBehaviour
   // Update is called once per frame
   void Update()
   {
-    waitSeconds -= Time.deltaTime;
-    if(waitSeconds <= 0)
+    if (Input.GetKeyDown(KeyCode.Space))
     {
-      white.color = new Color(white.color.r, white.color.g, white.color.b, Mathf.MoveTowards(white.color.a, 1f, whiteSeconds));
-
-      if (white.color.a <= 1f) {
-        SceneManager.LoadScene("Stairs");
-      }
+      animator.SetTrigger("splashScreenOut");
     }
+  }
+
+  public void GoToGame()
+  {
+    SceneManager.LoadScene("Stairs");
   }
 }
