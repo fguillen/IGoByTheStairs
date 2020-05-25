@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class ElevatorController : MonoBehaviour
 {
-  public float timeDoors = 2f;
+  public float timeDoors;
   private float timeDoorsCounter;
-  public float velocity = 3f;
+  public float velocity;
   public string state;
   public Rigidbody2D theRB;
   public Animator animator;
@@ -25,6 +25,7 @@ public class ElevatorController : MonoBehaviour
     {
       state = "closingDoors";
       animator.SetTrigger("closeDoors");
+      AudioController.instance.PlayElevatorDoorsClose();
     }
     if(state == "goingUp")
     {
@@ -47,6 +48,7 @@ public class ElevatorController : MonoBehaviour
       if (timeDoorsCounter <= 0)
       {
         state = "goingUp";
+        AudioController.instance.PlayElevatorUp();
       }
     }
   }
@@ -59,6 +61,7 @@ public class ElevatorController : MonoBehaviour
       animator.SetTrigger("openDoors");
       theRB.velocity = Vector3.zero;
       timeDoorsCounter = timeDoors;
+      AudioController.instance.PlayElevatorDoorsOpen();
     }
   }
 }
