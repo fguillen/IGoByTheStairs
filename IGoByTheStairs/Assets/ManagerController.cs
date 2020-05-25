@@ -44,6 +44,11 @@ public class ManagerController : MonoBehaviour
       {
         StartAgain();
       }
+
+      if (Input.GetKeyDown(KeyCode.C))
+      {
+        ShowCredits();
+      }
     }
   }
 
@@ -91,5 +96,10 @@ public class ManagerController : MonoBehaviour
   public void StartAgain()
   {
     SceneManager.LoadScene("Stairs");
+  }
+
+  public void ShowCredits()
+  {
+    SceneManager.LoadScene("Credits");
   }
 }

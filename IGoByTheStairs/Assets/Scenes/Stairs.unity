@@ -2268,7 +2268,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: (press "Space" to start Again)
+  m_Text: '(press "Space" to start Again)
+
+    (press "C" to see the Credits)'
 --- !u!222 &1983526340
 CanvasRenderer:
   m_ObjectHideFlags: 0
